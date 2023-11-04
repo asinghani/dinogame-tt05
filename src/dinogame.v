@@ -88,7 +88,7 @@ reg [19:0] no_jump_ctr;
 
 
 jumping jumping_inst (
-    .speed(250000),
+    .speed(24'd250000),
     .jump(jump_in),
     .jump_pos(jump_pos),
     .halt(game_halt),
@@ -111,8 +111,8 @@ scroll scroll_inst (
     .pos(scrolladdr[10:0]),
     .halt(game_halt),
 
-    .speed_change(cfg_accel),
-    .move_amt(cfg_speed),
+    .speed_change({4'b0, cfg_accel}),
+    .move_amt({4'b0, cfg_speed}),
 
     .game_rst(game_reset),
     .clk(clk),
