@@ -11,7 +11,7 @@ module tt_um_dinogame (
     input  wire       rst_n     // reset_n - low to reset
 );
 
-    logic vR, vG, vB, hs, vs;
+    logic pix, hs, vs;
 
     dinogame game (
         .jump_in(ui_in[0]),
@@ -20,14 +20,14 @@ module tt_um_dinogame (
 
         .vga_hsync(hs),
         .vga_vsync(vs),
-        .vga_red(vR),
-        .vga_green(vG),
-        .vga_blue(vB),
+        .vga_red(),
+        .vga_green(),
+        .vga_blue(),
 
-        .vga_pixel(),
+        .vga_pixel(pix),
 
-        .cfg_accel(ui_in[3] ? uio_in[7:4] : 4),
-        .cfg_speed(ui_in[3] ? uio_in[3:0] : 2),
+        .cfg_accel(ui_in[3] ? uio_in[7:4] : 4'd4),
+        .cfg_speed(ui_in[3] ? uio_in[3:0] : 4'd2),
 
         .clk(clk),
         .sys_rst(!rst_n)
@@ -35,6 +35,6 @@ module tt_um_dinogame (
 
     assign uio_oe = '0;
 
-    assign uo_out = {hs, vB, vG, vR, vs, vB, vG, vR};
+    assign uo_out = {hs, pix, pix, pix, vs, pix, pix, pix};
 
 endmodule
