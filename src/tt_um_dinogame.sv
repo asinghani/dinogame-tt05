@@ -34,6 +34,7 @@ module tt_um_dinogame (
     );
 
     assign uio_oe = '0;
+    assign uio_out = '0;
 
     assign uo_out = {hs, pix, pix, pix, vs, pix, pix, pix};
 
